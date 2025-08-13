@@ -6,7 +6,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!-- xxxxxxxxxxには自身のKitCodeのIDが入ります  -->
+    <script src="https://kit.fontawesome.com/xxxxxxxxxx.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -24,7 +26,10 @@
       <%= link_to "ログイン", new_user_session_path %>
     </li>
   <% end %>
-</header>
+  </header>
     <%= yield %>
   </body>
 </html>
+
+<main>
+    <div class="flash-message notice">投稿に成功しました。</div>

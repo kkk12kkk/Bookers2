@@ -1,2 +1,37 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h2>タイトル</h2>
+<p><%= @user.title %></p>
+
+<h2>本文</h2>
+<p><%= @user.body %></p>
+<h2>画像</h2>
+<% if @user.image.attached? %>
+  <%= image_tag @list.image, size: "300x300" %>
+<% else %>
+  <%= image_tag 'no_image', size: "300x300" %>
+<% end %>
+
+<%= link_to "編集", edit_user_path(@user.id) %>
+<%= link_to "削除", destroy_user_path(@user.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+
+<div>
+  <h3><%= @user.name %></h3>
+  <%= image_tag @user.get_profile_image(100,100) %>
+  <% if @user == XXXXX %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% end %>
+</div>
+
+<div>
+  <%= image_tag @post_image.get_image %>
+  <p>ショップ名：<%= @post_image.shop_name %></p>
+  <p>説明：<%= @post_image.caption %></p>
+  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
+  <p>ユーザーネーム：<%= @post_image.user.name %></p>
+  <p>投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
+  <% if @post_image.user == current_user %>
+    <%= link_to "削除", post_image_path(@post_image), method: :delete %>
+    <p><%= link_to "プロフィール編集",user %></p>
+  <% end %>
+</div>
+
+<%= render 'post_images/user', post_images: @post_images %>

@@ -1,2 +1,22 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1>投稿一覧</h1>
+<% @users.each do |user| %>
+
+    <p>タイトル</p>
+    <span>
+      <%=link_to user.title, user_path(user.id) %>
+    </span>
+
+    <div class="container">  <!-- この行を追加 -->
+  <div class="row">      <!-- この行を追加 -->
+  
+  <p>投稿ユーザー画像：<%= image_tag post_image.user.get_profile_image(100,100) %></p>
+
+ <table class="table table-striped">
+    <p>画像</p>
+    <% if user.image.attached? %>
+      <%= image_tag user.image, size: "200x200" %>
+    <% else %>
+      <%= image_tag 'no_image', size: "200x200" %>
+    <% end %>
+ </table>
+<% end %>
