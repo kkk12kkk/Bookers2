@@ -1,10 +1,6 @@
 # This migration comes from active_storage (originally 20170806125915)
 class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
   def change
-    create_table :users do |t|
-      t.string :name
-      t.string :introduction
-      t.timestamps
     # Use Active Record's configured type for primary and foreign keys
     primary_key_type, foreign_key_type = primary_and_foreign_key_types
 
@@ -41,7 +37,7 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
     end
   end
 
-    private
+  private
     def primary_and_foreign_key_types
       config = Rails.configuration.generators
       setting = config.options[config.orm][:primary_key_type]
@@ -49,5 +45,4 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
       foreign_key_type = setting || :bigint
       [primary_key_type, foreign_key_type]
     end
- end
 end

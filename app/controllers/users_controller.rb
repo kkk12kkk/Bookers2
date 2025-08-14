@@ -7,13 +7,14 @@ class UsersController < ApplicationController
     # １.&2. データを受け取り新規登録するためのインスタンス作成
     user = User.new(user_params)
     # 3. データをデータベースに保存するためのsaveメソッド実行
-    user.save
+    if user.save
       # 3. フラッシュメッセージを定義し、詳細画面へリダイレクト
       flash[:notice] = "投稿に成功しました。"
       redirect_to user_path(@user.id)
     else
       flash.now[:alert] = "投稿に失敗しました。" #キーをalertに変更
       render :new
+    end
   end
 
   def index
@@ -29,6 +30,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     unless user.id == current_user.id
       redirect_to post_images_path
+    end
   end
 
   def destroy
