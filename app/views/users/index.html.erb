@@ -3,13 +3,8 @@
 
     <p>タイトル</p>
     <span>
-      <%=link_to user.title, user_path(user.id) %>
+      <%=link_to user.name, user_path(user.id) %>
     </span>
-
-    <div class="container">  <!-- この行を追加 -->
-  <div class="row">      <!-- この行を追加 -->
-  
-  <p>投稿ユーザー画像：<%= image_tag post_image.user.get_profile_image(100,100) %></p>
 
  <table class="table table-striped">
     <p>画像</p>

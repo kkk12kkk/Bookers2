@@ -5,14 +5,14 @@ class UsersController < ApplicationController
 
   def create
     # １.&2. データを受け取り新規登録するためのインスタンス作成
-    user = User.new(user_params)
+    @user = User.new(user_params)
     # 3. データをデータベースに保存するためのsaveメソッド実行
-    if user.save
+    if @user.save
       # 3. フラッシュメッセージを定義し、詳細画面へリダイレクト
-      flash[:notice] = "投稿に成功しました。"
+      flash[:notice] = "ユーザー登録に成功しました。"
       redirect_to user_path(@user.id)
     else
-      flash.now[:alert] = "投稿に失敗しました。" #キーをalertに変更
+      flash.now[:alert] = "ユーザー登録に失敗しました。"
       render :new
     end
   end
@@ -23,14 +23,14 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @post_images = @user.post_images
+    @books = @user.books
   end
 
   def edit
-    user = User.find(params[:id])
-    unless user.id == current_user.id
-      redirect_to post_images_path
-    end
+    @user = User.find(params[:id])
+    return if @user == current_user           # 本人は通す
+  
+    redirect_to books_path, alert: "他人のページは編集できません。"
   end
 
   def destroy

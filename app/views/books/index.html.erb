@@ -1,0 +1,24 @@
+<h1>Book一覧</h1>
+
+<div class="user-profile">
+  <h2>プロフィール</h2>
+
+  <p><strong>名前：</strong><%= current_user.name %></p>
+  <p><strong>自己紹介：</strong><%= current_user.introduction %></p>
+
+  <%= link_to "プロフィールを編集する", edit_user_path(current_user), class: "btn btn-primary" %>
+</div>
+
+<% @books.each do |book| %>
+  <div class="book">
+    <!-- 画像がある場合だけ表示 -->
+    <% if book.image.attached? %>
+      <%= image_tag book.image, width: 200, height: 200 %>
+    <% else %>
+      <p>画像はありません</p>
+    <% end %>
+
+    <!-- タイトルの表示 -->
+    <p><%= book.title %></p>
+  </div>
+<% end %>
