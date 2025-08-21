@@ -2,7 +2,7 @@
 <% @users.each do |user| %>
   <p id="notice"><%= notice %></P>
 
-   <h1>User info</h1>
+   <%= render 'user_info', user: @user%>
 
    <div class="container">
     <div class="row">
