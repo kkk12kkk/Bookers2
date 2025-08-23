@@ -17,21 +17,37 @@ class BooksController < ApplicationController
 
   def create
     # １.&2. データを受け取り新規登録するためのインスタンス作成
-    book = Book.new(book_params)
+    @book = Book.new(book_params)
+    @book.user_id = current_user.id
     # 3. データをデータベースに保存するためのsaveメソッド実行
-    if book.save
+    if @book.save
       # 3. フラッシュメッセージを定義し、詳細画面へリダイレクト
-      flash[:notice] = "投稿に成功しました。"
+      flash[:notice] = "You have creatad book successfully"
       redirect_to book_path(@book.id)
     else
-      flash.now[:alert] = "投稿に失敗しました。" #キーをalertに変更
-      render :new
+      flash[:alert] = @book.errors.full_messages.join("activerecord.errors.models.book.") #キーをalertに変更
+      @user = current_user
+      @books = Book.all
+      @newbook = Book.new
+      @user = user.all
+      render 'index'
     end
   end
 
   def index
-    @books = Book.all
+      @users = User.all
+    if current_user
+      @user = current_user
+    end
+      @books = Book.all
+      @newbook = Book.new
   end
+
+   def show
+      @newbook = Book.new
+      @book = Book.find(params[:id])
+      @user = @book.user
+   end
 
   def top
   end
