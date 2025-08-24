@@ -4,14 +4,12 @@ class BooksController < ApplicationController
   end
 
   def edit
-    # ここから追加
-    book = Book.find(params[:id])
-    unless book.id == current_book.id
-      redirect_to post_images_path
-    end
-    # ここまで追加
-  
     @book = Book.find(params[:id])
+    if @book.user == current_user
+      render "edit"
+    else
+      redirect_to book_path
+    end
   end
 
 
@@ -54,7 +52,14 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    @book.update(book_params)
-    redirect_to book_path(@book.id)
+    @book.assign_attributes(book_params)
+    
+     if @book.varid?
+       @book.save
+       flash[:notice] = "Book was successfully updated"
+       redirect_to book_path(@book.id)
+     else
+       flash.now[:alert] = @book.errors.full_messages.join
+       render :edit
+      end
   end
-end
