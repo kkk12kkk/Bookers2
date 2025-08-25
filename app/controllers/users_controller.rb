@@ -18,20 +18,28 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all  
-    @user = current_user
+    if current_user
+      @user = current_user
+    end
+      @users = User.all
+      @books = Book.all
+      @newbook = Book.new
   end
 
   def show
-    @user = User.find(params[:id])
-    @books = @user.books
+      @user = User.find(params[:id])
+      @book = Book.new
+      @books = Book.where(user_id: @user.id)
+      @newbook = Book.new
   end
 
   def edit
-    @user = User.find(params[:id])
-    return if @user == current_user           # 本人は通す
-  
-    redirect_to books_path, alert: "他人のページは編集できません。"
+      @user = User.find(params[:id])
+    if @user == current_user
+         render "edit"
+    else
+      redirect_to user_path(current_user)
+    end  
   end
 
   def destroy
@@ -41,22 +49,18 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+      @user = User.find(params[:id])
+    if  @user.update(user_params)
+      fiash[:notice] = "You have update user successfully"
+      redirect_to user_path(current_user)
+    else
+      render :edit
+    end
   end
-
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :profile_image)
-  end
-
-  def is_matching_login_user
-    user = User.find(params[:id])
-    unless user.id == current_user.id
-      redirect_to post_images_path
-    end
+    params.require(:user).permit(:name, :email, :profile_image, :introduction)
   end
 end
