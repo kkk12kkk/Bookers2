@@ -1,59 +1,62 @@
-<!-- app/views/users/show.html.erb -->
-<head>
-  <body>
-    <main>
-      <p id="notice">welcome! You have signed up  successfully.</p>
-       <div class="container px-5 px-sm-0">
-        <div class="row">
-         <div class="col-md-3">
-           <%= render 'user_info', user: @user%>
-         </div>
-         <div class="col-md-8 offset-md-1"></div> 
-         <h2>books</h2>
-         
-
-
-
-
-
-       </div>
-     </div>
-   </main>     
-   <footer>
-     <div class="container mt-5">
-      <div class="row"></div>
-     </div>
-   </footer>  
-
-
-
-
-<h2>タイトル</h2>
-<% @books.each do |book| %>
-  <p><%= book.title %></p>
-<% end %>
-<h2>本文</h2>
-<% @books.each do |book| %>
-  <p><%= book.body %></p>
-<% end %>
-
-<%= link_to "編集", edit_user_path(@user.id) %>
-<%= link_to "削除", user_path(@user.id), method: :delete, data: { confirm: "本当に削除しますか？" } %>
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.image, size: "100x100" if @user.image.attached? %>
-  <% if @user == current_user %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-  <% end %>
-</div>
-<hr>
-<h2>投稿一覧</h2>
-<% @books.each do |book| %>
-  <div class="book">
-    <p>タイトル: <%= book.title %></p>
-    <p>本文: <%= book.body %></p>
-    <p>投稿者: <%= book.user.name %></p>
-    <p>投稿日: <%= l(book.created_at, format: :short) %></p>
-    <%= link_to "詳細", book_path(book) %>
+<% if flash[:notice].present? %>
+  <div class="alert alert-success bg-white">
+    <%= flash[:notice] %>
   </div>
 <% end %>
+
+<div class="container">
+  <div class="row">
+    <!-- ユーザー情報や投稿フォームなど -->
+    <div class="col-md-3">
+      <%= render 'user_info', user: @user %>
+    </div>
+
+    <!-- 投稿一覧 -->
+    <div class="col-md-8 offset-md-1">
+      <h1>Books</h1>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |book| %>
+            <tr>
+              <td>
+                <%= link_to user_path(book.user) do %>
+                  <%= image_tag book.user.get_profile_image(100, 100) %>
+                <% end %>
+              </td>
+              <td><%= link_to book.title, book_path(book) %></td>
+              <td><%= book.body %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="mt-4">
+        <h3><%= @user.name %></h3>
+        <% if @user.profile_image.attached? %>
+          <%= image_tag @user.profile_image, size: "100x100" %>
+        <% end %>
+      <hr>
+
+      <h2></h2>
+      <% @books.each do |book| %>
+        <div class="book mb-4 p-3 border rounded">
+          <p><strong>タイトル:</strong> <%= book.title %></p>
+          <p><strong>本文:</strong> <%= book.body %></p>
+          <p><strong>投稿者:</strong> <%= book.user.name %></p>
+          <p><strong>投稿日:</strong> <%= l(book.created_at, format: :short) %></p>
+          <%= link_to "詳細", book_path(book), class: "btn btn-outline-info btn-sm" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render 'books/footer' %>

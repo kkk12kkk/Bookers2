@@ -2,7 +2,6 @@
   <p class="alert alert-success bg-white"><%= notice %></p>
 <% end %>
 
-
 <% if user_signed_in? %>
   <div class="container-fluid mt-5">
     <div class="header row">
@@ -15,36 +14,36 @@
         </div>
         <div class="btn-box col-10 mx-auto mt-5">
           <div class="row">
-            <a class="btn btn-info btn-sm btn-block mb-3 sign_in" href="/users/sign_in">log in</a>
+            <a class="btn btn-info btn-sm btn-block mb-3 sign-in" href="/users/sign_in">Log in</a>
           </div>
           <div class="row">
-            <a class="btn btn-success btn-sm btn-block sign_up" href="/users/sign_up">sign_up</a>
+            <a class="btn btn-success btn-sm btn-block sign-up" href="/users/sign_up">Sign up</a>
           </div>
         </div>
       </div>
-   </div>
- </div>
+    </div>
+  </div>
 <% else %>
- <div class="container-fluid mt-5">
-   <div class="header row">
-     <div class="mx-auto">
-       <div class="col">
-         <h2>welcome to <i class="fas fa-book"><Bookers !!</h2>
-         <p>In <i class="fas fa-book"></i>Bookers,</p>
-         <p>you can share and exchange your opinions, impressions, and emotions</p>
-         <p>about various books!</p>
-       </div>
-       <div class="btn^box col-10 mz-auto mt-5">
-         <div class="row">
-           <a class="btn btn-info btn-sm btn-block mb-3 sign-in" href="/users/sign_in">log_in</a>
-         </div>
-         <div class="row">
-           <a class="btn btn-success btn-sm btn-block sign_up" href="/users/sign_up">sign up</a>
-         </div>
-       </div> 
-     </div>   
-   </div>
- </div>
+  <div class="container-fluid mt-5">
+    <div class="header row">
+      <div class="mx-auto">
+        <div class="col">
+          <h2>Welcome to <i class="fas fa-book"></i> Bookers!!</h2>
+          <p>In <i class="fas fa-book"></i> Bookers,</p>
+          <p>you can share and exchange your opinions, impressions, and emotions</p>
+          <p>about various books!</p>
+        </div>
+        <div class="btn-box col-10 mx-auto mt-5">
+          <div class="row">
+            <a class="btn btn-info btn-sm btn-block mb-3 sign-in" href="/users/sign_in">Log in</a>
+          </div>
+          <div class="row">
+            <a class="btn btn-success btn-sm btn-block sign-up" href="/users/sign_up">Sign up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
 
-<% render 'books/footer' %>
+<%= render 'books/footer' %>
