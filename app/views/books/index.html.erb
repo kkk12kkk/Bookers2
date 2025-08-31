@@ -30,6 +30,9 @@
                 <td><%= link_to book.title, book_path(book) %></td>
                 <td><%= book.body %></td>
               </tr>
+              <div class="col-lg-4" style="background-color: green;">
+               <%= link_to 'creste Book', new_post_path, class: "btn btn-success" %>
+              </div
             <% end %>
             <% end %>
             </tbody>
