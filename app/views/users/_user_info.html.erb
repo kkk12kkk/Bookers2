@@ -21,10 +21,10 @@
   </tbody>
 </table>
 <div class="row">
-  <td><%= link_to class:"btn btn-outline-secoudary" "btn-block" %></td>
+  <%= link_to(edit_user_path(user), class:"btn btn_outline_secoudary btn-block") do %>
     <i class="fas fa-user-cog">
     </i>
-  </>
+    <% end %>
   </div>
 <h2 class="mt-3">New book</h2>
 <%= form_with model: @new_book do |f| %>
@@ -36,6 +36,7 @@
   </div>
   <div class="field">
     <%= f.label :opinion %><br>
+    <!--文字入力出来るフィールドが出来る。-->
     <%= f.text_area :body %>
   </div>
   <div class="row ml-5">
