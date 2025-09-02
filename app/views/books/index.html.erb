@@ -11,7 +11,7 @@
     </div>
 
     <div class="col-md-8 offset-md-1">
-       <h1>Books</div>
+       <h1>Books</h1>
           <table class="table">
             <thead>
               <th></th>
@@ -19,21 +19,16 @@
               <th>Opinion</th>
             </thead>
             <tbody>
-            <% @users.each do |user| %>
-            <% user.books.each do |book| %>
+            <% @books.each do |book| %>
               <tr>
                 <td>
                   <%= link_to user_path(book.user) do %>
-                  <%= image_tag book.user.get_profile_image(100, 100) %>
+                    <%= image_tag book.user.get_profile_image(100, 100) %>
                   <% end %>
                 </td>
                 <td><%= link_to book.title, book_path(book) %></td>
                 <td><%= book.body %></td>
               </tr>
-              <div class="col-lg-4" style="background-color: green;">
-               <%= link_to 'creste Book', new_post_path, class: "btn btn-success" %>
-              </div
-            <% end %>
             <% end %>
             </tbody>
           </table>

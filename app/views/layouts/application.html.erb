@@ -29,7 +29,7 @@
             <%= link_to users_path, class: 'text-white mr-3' do %>
               <i class="fa-solid fa-users"></i>Users
             <% end %>
-            <%= link_to users_path, class: 'text-white mr-3' do %>
+            <%= link_to books_path, class: 'text-white mr-3' do %>
               <i class="fa-solid fa-book-open"></i>Books
             <% end %>
             <%= link_to destroy_user_session_path, method: :delete, class: 'text-white mr-3' do %>
@@ -54,5 +54,8 @@
    </div>
    </div>
     <%= yield %>
+      <footer style="text-align: center; margin-top: 50px;">
+    <p>CopyRight Infratop.inc</p>
+  </footer>
   </body>
 </html>
