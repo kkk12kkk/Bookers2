@@ -24,7 +24,7 @@
     <% @newbook ||= Book.new %>
 
   <h1>New book</h1>
-  <%= form_with model: @new_book do |f| %>
+  <%= form_with model: @newbook do |f| %>
     <div class="field">
          <!-- f.label :title 入力する事でcode内では小文字でもサイト上では大文字になる。 -->
       <%= f.label :title %><br>
@@ -36,6 +36,6 @@
       <%= f.text_area :body %>
     </div>
     <div class="row ml-0">
-      <%= f.submit 'Creste Book', class: "btn btn-success" %>
+      <%= f.submit 'Create Book', class: "btn btn-success" %>
     </div>
   <% end %>    
