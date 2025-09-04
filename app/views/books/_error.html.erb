@@ -2,7 +2,7 @@
    <div id="error_explanation">
      <h2><%= pluralize(model.errors.count,"error") %> prohibited this book from being saved:</h2>
      <ul>
-     <% model.error.full_messages.each do |message| %>
+     <% model.errors.full_messages.each do |message| %>
         <li><%= message %></li>
      <% end %>
      </ul>

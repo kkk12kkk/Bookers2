@@ -11,9 +11,10 @@
      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
     
-  <body>
+  <body>  
+  <header>
    <div class="container-fluid bg-secondary">
-     <div class="header row px-5 py-4"
+     <div class="row px-5 py-4"
        <div class="col-3 d-flex justify-content-strat">
         <%= link_to "Bookers", root_path, style: 'color: white;' %>
        </div>
@@ -53,7 +54,10 @@
      </div>
    </div>
    </div>
-    <%= yield %>
+   </header>
+   <main>
+     <%= yield %>
+   </main>
       <footer style="text-align: center; margin-top: 50px;">
     <p>CopyRight Infratop.inc</p>
   </footer>

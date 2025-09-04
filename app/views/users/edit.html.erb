@@ -2,8 +2,8 @@
   <viv id="error_explanation">
     <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
     <ul>
-      <% @user.errors.full.massages.each do |massages| %>
-        <li><%= massages %></li>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
       <% end %>
     </ul>
   </div>
