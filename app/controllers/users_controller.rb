@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   def update
       @user = User.find(params[:id])
     if  @user.update(user_params)
-      fiash[:notice] = "You have update user successfully"
+      flash[:notice] = "You have update user successfully"
       redirect_to user_path(current_user)
     else
       render :edit

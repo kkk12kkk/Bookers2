@@ -14,18 +14,15 @@
             <th>Title</th>
             <th></th>
           </tr>
-          <% @books.each do |book| %
+          <% @users.each do |user| %>
           <tr>
-            <%= image_tag book.user.get_profile_image(100,100) %>
+          <td>
+            <%= image_tag user.get_profile_image(100,100) %>
             </td>
-            <td><%= book.user.name %></td>
+            <td><%= user.name %></td>
             
             <td>
-              <% if book.user ==current_user %>
-                <%= link_to 'show', user_path(current_user) %>
-              <% else %>
-                <%= link_to 'show', user_path(book.user) %>
-              <% end %>
+                <%= link_to 'Show', user_path(user) %>
             </td>
           </tr>
           <% end %>
